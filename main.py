@@ -198,6 +198,7 @@ def _initialize_sample_data():
 
 
 if __name__ == '__main__':
+    import os
     app = create_app()
     print("=" * 60)
     print("AI Building Materials Leasing Platform")
@@ -211,4 +212,7 @@ if __name__ == '__main__':
     print("  POST /api/leases - Create a new lease")
     print("\nWeb Interface: http://localhost:5000")
     print("=" * 60)
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    
+    # Use debug mode from environment variable, default to False for production
+    debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() in ('true', '1', 't')
+    app.run(debug=debug_mode, host='0.0.0.0', port=5000)

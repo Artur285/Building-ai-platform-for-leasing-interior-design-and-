@@ -52,7 +52,12 @@ pip install -r requirements.txt
 
 4. **Run the application**
 ```bash
-python app.py
+python main.py
+```
+
+For development with debug mode enabled:
+```bash
+FLASK_DEBUG=True python main.py
 ```
 
 The server will start on `http://localhost:5000`
@@ -214,14 +219,16 @@ The platform uses a sophisticated AI engine that:
 
 ```
 .
-├── app.py                 # Main Flask application
+├── main.py               # Main Flask application
 ├── config.py             # Configuration settings
 ├── requirements.txt      # Python dependencies
 ├── app/
+│   ├── __init__.py       # App package initialization
 │   ├── models.py         # Database models
 │   ├── routes.py         # API endpoints
 │   └── ai_engine.py      # AI recommendation engine
 ├── static/               # Static files (HTML, CSS, JS)
+│   └── index.html        # Web interface
 └── README.md            # This file
 ```
 

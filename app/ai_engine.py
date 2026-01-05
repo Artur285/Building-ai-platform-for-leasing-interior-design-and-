@@ -1,5 +1,4 @@
 """AI-powered recommendation engine for building materials."""
-import json
 from typing import List, Dict, Tuple
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
