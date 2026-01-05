@@ -53,7 +53,7 @@ class MaterialRecommender:
         Returns:
             List of tuples (material_dict, similarity_score)
         """
-        if not self.material_vectors or not self.materials_data:
+        if self.material_vectors is None or not self.materials_data:
             return []
         
         # Create query text
@@ -90,7 +90,7 @@ class MaterialRecommender:
         Returns:
             List of tuples (material_dict, relevance_score)
         """
-        if not self.material_vectors or not self.materials_data:
+        if self.material_vectors is None or not self.materials_data:
             return []
         
         # Find materials by ID

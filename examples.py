@@ -2,6 +2,7 @@
 Example usage of the AI Building Materials Leasing Platform API.
 
 This script demonstrates how to interact with the platform programmatically.
+Run the server first: python main.py
 """
 import requests
 import json
@@ -205,7 +206,7 @@ def main():
             return
     except:
         print("❌ Cannot connect to server. Please start the server first:")
-        print("   python app.py")
+        print("   python main.py")
         return
     
     print("✓ Server is running\n")
