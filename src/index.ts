@@ -26,10 +26,13 @@ app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'healthy', timestamp: new Date().toISOString() });
 });
 
-// Start server
-if (require.main === module) {
+// Start server only if this file is run directly
+const isMainModule = require.main === module;
+if (isMainModule) {
   app.listen(PORT, () => {
     console.log(`🚀 Server is running on http://localhost:${PORT}`);
+    console.log(`📚 API Documentation: http://localhost:${PORT}/`);
+    console.log(`❤️  Health Check: http://localhost:${PORT}/health`);
   });
 }
 
