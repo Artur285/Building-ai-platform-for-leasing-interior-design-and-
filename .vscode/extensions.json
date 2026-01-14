@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-next",
+    "ms-python.python",
+    "github.copilot",
+    "github.copilot-chat",
+    "ms-azuretools.vscode-docker"
+  ]
+}
