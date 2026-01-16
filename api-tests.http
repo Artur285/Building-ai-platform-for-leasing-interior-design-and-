@@ -1,0 +1,222 @@
+### AI Building Materials Leasing Platform - API Examples
+### Use this file with the REST Client extension in VS Code
+### Change @baseUrl to test different environments
+
+@baseUrl = http://localhost:5000
+@contentType = application/json
+
+### ==================== Health Check ====================
+
+### Health Check
+GET {{baseUrl}}/api/health
+
+### ==================== Materials ====================
+
+### Get All Materials
+GET {{baseUrl}}/api/materials
+
+### Get Materials by Category
+GET {{baseUrl}}/api/materials?category=Scaffolding
+
+### Search Materials
+GET {{baseUrl}}/api/materials?search=concrete
+
+### Get Single Material
+GET {{baseUrl}}/api/materials/1
+
+### Create New Material
+POST {{baseUrl}}/api/materials
+Content-Type: {{contentType}}
+
+{
+  "name": "Hydraulic Excavator (Large)",
+  "category": "Heavy Equipment",
+  "description": "Large hydraulic excavator for major earthmoving projects",
+  "unit": "unit",
+  "price_per_day": 650.00,
+  "quantity_available": 3,
+  "specifications": "Weight: 25 tons, Dig depth: 20ft, Bucket capacity: 2 cubic yards"
+}
+
+### Update Material
+PUT {{baseUrl}}/api/materials/1
+Content-Type: {{contentType}}
+
+{
+  "price_per_day": 2.75,
+  "quantity_available": 4800
+}
+
+### ==================== AI Recommendations ====================
+
+### Get Project-Based Recommendations
+POST {{baseUrl}}/api/recommendations/project
+Content-Type: {{contentType}}
+
+{
+  "project_description": "Building a modern 8-story residential apartment complex with retail spaces on the ground floor. The project requires concrete work, scaffolding for high-rise construction, safety equipment, and heavy machinery for foundation work.",
+  "project_type": "Residential Construction",
+  "top_n": 8
+}
+
+### Get Recommendations for Commercial Building
+POST {{baseUrl}}/api/recommendations/project
+Content-Type: {{contentType}}
+
+{
+  "project_description": "Constructing a 10-story office building with underground parking. Needs formwork, structural materials, and site equipment.",
+  "project_type": "Commercial Building",
+  "top_n": 5
+}
+
+### Get Complementary Material Recommendations
+POST {{baseUrl}}/api/recommendations/complementary
+Content-Type: {{contentType}}
+
+{
+  "material_ids": [1, 2, 3],
+  "top_n": 5
+}
+
+### ==================== Pricing Optimization ====================
+
+### Calculate Optimized Pricing - Short Term
+POST {{baseUrl}}/api/pricing/optimize
+Content-Type: {{contentType}}
+
+{
+  "material_id": 2,
+  "lease_duration_days": 7,
+  "quantity": 10
+}
+
+### Calculate Optimized Pricing - Medium Term with Discounts
+POST {{baseUrl}}/api/pricing/optimize
+Content-Type: {{contentType}}
+
+{
+  "material_id": 1,
+  "lease_duration_days": 30,
+  "quantity": 50
+}
+
+### Calculate Optimized Pricing - Long Term Maximum Discount
+POST {{baseUrl}}/api/pricing/optimize
+Content-Type: {{contentType}}
+
+{
+  "material_id": 2,
+  "lease_duration_days": 90,
+  "quantity": 100
+}
+
+### Calculate Pricing for Heavy Equipment
+POST {{baseUrl}}/api/pricing/optimize
+Content-Type: {{contentType}}
+
+{
+  "material_id": 3,
+  "lease_duration_days": 60,
+  "quantity": 2
+}
+
+### ==================== Users ====================
+
+### Create User
+POST {{baseUrl}}/api/users
+Content-Type: {{contentType}}
+
+{
+  "username": "john_builder",
+  "email": "john@construction.com",
+  "company_name": "Builder's Paradise Inc.",
+  "phone": "+1-555-9876"
+}
+
+### Get User Details
+GET {{baseUrl}}/api/users/1
+
+### ==================== Leases ====================
+
+### Create Lease
+POST {{baseUrl}}/api/leases
+Content-Type: {{contentType}}
+
+{
+  "user_id": 1,
+  "project_name": "Downtown Office Complex",
+  "project_description": "5-story commercial office building with retail on ground floor",
+  "start_date": "2024-03-01",
+  "end_date": "2024-06-01",
+  "delivery_address": "123 Main Street, Downtown",
+  "items": [
+    {
+      "material_id": 1,
+      "quantity": 100
+    },
+    {
+      "material_id": 2,
+      "quantity": 50
+    }
+  ]
+}
+
+### Get Lease Details
+GET {{baseUrl}}/api/leases/1
+
+### Get User's Leases
+GET {{baseUrl}}/api/leases/user/1
+
+### Update Lease Status
+PUT {{baseUrl}}/api/leases/1/status
+Content-Type: {{contentType}}
+
+{
+  "status": "active"
+}
+
+### Update Lease Status to Completed
+PUT {{baseUrl}}/api/leases/1/status
+Content-Type: {{contentType}}
+
+{
+  "status": "completed"
+}
+
+### ==================== Categories ====================
+
+### Get All Categories
+GET {{baseUrl}}/api/categories
+
+### ==================== Test Multiple Scenarios ====================
+
+### Scenario 1: Large Construction Project
+# First, get recommendations
+POST {{baseUrl}}/api/recommendations/project
+Content-Type: {{contentType}}
+
+{
+  "project_description": "Building a shopping mall with 200,000 sqft retail space, parking structure, and multiple floors",
+  "project_type": "Commercial Building",
+  "top_n": 10
+}
+
+### Scenario 2: Calculate bulk pricing for scaffolding
+POST {{baseUrl}}/api/pricing/optimize
+Content-Type: {{contentType}}
+
+{
+  "material_id": 2,
+  "lease_duration_days": 120,
+  "quantity": 150
+}
+
+### Scenario 3: Renovation Project Recommendations
+POST {{baseUrl}}/api/recommendations/project
+Content-Type: {{contentType}}
+
+{
+  "project_description": "Renovating an old warehouse into modern office space. Need interior materials, lighting, and access equipment.",
+  "project_type": "Renovation",
+  "top_n": 6
+}

@@ -24,6 +24,22 @@ An intelligent platform for leasing building materials and equipment using AI-po
 - **Database**: SQLAlchemy with SQLite
 - **AI/ML**: scikit-learn for recommendation engine
 - **API**: RESTful API with JSON responses
+- **PWA**: Progressive Web App support for Chrome installation
+
+## Development Tools
+
+### VS Code Integration
+- Pre-configured workspace with debugging support
+- REST Client for API testing without leaving VS Code
+- Auto-formatting and linting configurations
+- Task automation for common operations
+
+### Chrome Integration
+- **Progressive Web App (PWA)**: Install as desktop/mobile app
+- **Service Worker**: Offline support and fast loading
+- **Manifest**: App-like experience in standalone mode
+
+See [INTEGRATION.md](INTEGRATION.md) for detailed setup instructions.
 
 ## Installation
 

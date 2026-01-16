@@ -23,6 +23,15 @@ def create_app(config_class=Config):
     def index():
         return send_from_directory('static', 'index.html')
     
+    # PWA Routes
+    @app.route('/manifest.json')
+    def manifest():
+        return send_from_directory('static', 'manifest.json')
+    
+    @app.route('/service-worker.js')
+    def service_worker():
+        return send_from_directory('static', 'service-worker.js')
+    
     # Create database tables and initialize data
     with app.app_context():
         db.create_all()
