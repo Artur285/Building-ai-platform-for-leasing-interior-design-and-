@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "humao.rest-client",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-json-languageservice",
+    "redhat.vscode-yaml",
+    "streetsidesoftware.code-spell-checker",
+    "visualstudioexptteam.vscodeintellicode",
+    "ms-python.black-formatter"
+  ]
+}

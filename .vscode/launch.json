@@ -1,0 +1,49 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Flask",
+      "type": "python",
+      "request": "launch",
+      "module": "flask",
+      "env": {
+        "FLASK_APP": "main.py",
+        "FLASK_DEBUG": "1"
+      },
+      "args": [
+        "run",
+        "--host=0.0.0.0",
+        "--port=5000",
+        "--no-debugger",
+        "--no-reload"
+      ],
+      "jinja": true,
+      "justMyCode": true,
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Python: Current File",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Python: Run Tests",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/test_api.py",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Python: Run Examples",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/examples.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}
