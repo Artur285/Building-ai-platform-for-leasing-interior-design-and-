@@ -20,7 +20,26 @@ class AuthManager:
                 "JWT_SECRET environment variable must be set. "
                 "Generate a secure key with: python -c 'import secrets; print(secrets.token_hex(32))'"
             )
-        self.expiration = os.getenv('JWT_EXPIRATION', '24h')
+        # Parse JWT_EXPIRATION (format: "24h", "7d", etc.)
+        expiration_str = os.getenv('JWT_EXPIRATION', '24h')
+        self.expiration_hours = self._parse_expiration(expiration_str)
+    
+    def _parse_expiration(self, expiration_str: str) -> int:
+        """
+        Parse expiration string to hours.
+        
+        Args:
+            expiration_str: Expiration string (e.g., "24h", "7d")
+        
+        Returns:
+            Number of hours
+        """
+        if expiration_str.endswith('h'):
+            return int(expiration_str[:-1])
+        elif expiration_str.endswith('d'):
+            return int(expiration_str[:-1]) * 24
+        else:
+            return 24  # Default to 24 hours
     
     def hash_password(self, password: str) -> str:
         """
@@ -62,7 +81,7 @@ class AuthManager:
         payload = {
             'user_id': user_id,
             'email': email,
-            'exp': datetime.utcnow() + timedelta(hours=24)
+            'exp': datetime.utcnow() + timedelta(hours=self.expiration_hours)
         }
         return jwt.encode(payload, self.secret_key, algorithm='HS256')
     

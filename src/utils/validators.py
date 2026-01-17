@@ -3,6 +3,7 @@ Data validation utilities.
 """
 from typing import Dict, List, Any
 import re
+import html
 
 def validate_email(email: str) -> bool:
     """
@@ -58,11 +59,11 @@ def sanitize_input(data: Any) -> Any:
         data: Input data to sanitize
     
     Returns:
-        Sanitized data
+        Sanitized data with HTML entities escaped
     """
     if isinstance(data, str):
-        # Remove potentially dangerous characters
-        return data.strip().replace('<', '').replace('>', '')
+        # Use html.escape to properly sanitize HTML content
+        return html.escape(data.strip(), quote=True)
     elif isinstance(data, dict):
         return {k: sanitize_input(v) for k, v in data.items()}
     elif isinstance(data, list):

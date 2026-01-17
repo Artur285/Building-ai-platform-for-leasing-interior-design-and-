@@ -4,6 +4,7 @@ Lease management service.
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from typing import Dict, List, Optional
+import uuid
 
 class LeaseService:
     """
@@ -86,5 +87,4 @@ class LeaseService:
     
     def _generate_lease_id(self) -> str:
         """Generate a unique lease ID."""
-        import uuid
         return f"L{uuid.uuid4().hex[:8].upper()}"
