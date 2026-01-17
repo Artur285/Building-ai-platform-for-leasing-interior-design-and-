@@ -42,3 +42,4 @@ def test_sanitize_input():
     assert sanitize_input('<script>alert("xss")</script>') == 'scriptalert("xss")/script'
     assert sanitize_input('  hello  ') == 'hello'
     assert sanitize_input({'key': '<value>'}) == {'key': 'value'}
+    assert sanitize_input(['<item>', 'safe']) == ['item', 'safe']

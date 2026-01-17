@@ -14,7 +14,12 @@ class AuthManager:
     
     def __init__(self):
         """Initialize the auth manager."""
-        self.secret_key = os.getenv('JWT_SECRET', 'default-secret-key')
+        self.secret_key = os.getenv('JWT_SECRET')
+        if not self.secret_key:
+            raise ValueError(
+                "JWT_SECRET environment variable must be set. "
+                "Generate a secure key with: python -c 'import secrets; print(secrets.token_hex(32))'"
+            )
         self.expiration = os.getenv('JWT_EXPIRATION', '24h')
     
     def hash_password(self, password: str) -> str:

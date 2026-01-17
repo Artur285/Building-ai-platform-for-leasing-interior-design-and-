@@ -2,6 +2,7 @@
 Lease management service.
 """
 from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
 from typing import Dict, List, Optional
 
 class LeaseService:
@@ -37,7 +38,7 @@ class LeaseService:
         Returns:
             Created lease information
         """
-        end_date = start_date + timedelta(days=duration_months * 30)
+        end_date = start_date + relativedelta(months=duration_months)
         total_cost = sum(item.get('price', 0) for item in items) * duration_months
         
         lease = {
