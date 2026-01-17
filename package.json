@@ -1,0 +1,37 @@
+{
+  "name": "ai-interior-design-platform",
+  "version": "1.0.0",
+  "description": "AI Platform for Interior Design Leasing",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server/index.js",
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "test": "jest",
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\""
+  },
+  "keywords": [
+    "ai",
+    "interior-design",
+    "leasing",
+    "machine-learning"
+  ],
+  "author": "Artur285",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "axios": "^1.5.0",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "concurrently": "^8.2.1",
+    "eslint": "^8.49.0",
+    "prettier": "^3.0.3",
+    "jest": "^29.7.0"
+  }
+}

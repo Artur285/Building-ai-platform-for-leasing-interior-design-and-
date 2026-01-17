@@ -77,8 +77,10 @@ models/*.bin
 data/raw/
 data/processed/
 *.csv
-*.json
+data/*.json
 !config/*.json
+!package.json
+!tsconfig.json
 
 # Temporary files
 tmp/
