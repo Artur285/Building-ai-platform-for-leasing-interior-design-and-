@@ -1,0 +1,62 @@
+{
+  "app_name": "AI Interior Design Platform",
+  "version": "1.0.0",
+  "api_version": "v1",
+  "supported_styles": [
+    "modern",
+    "contemporary",
+    "minimalist",
+    "industrial",
+    "scandinavian",
+    "bohemian",
+    "traditional",
+    "rustic",
+    "mid-century",
+    "coastal"
+  ],
+  "space_types": [
+    "bedroom",
+    "living_room",
+    "dining_room",
+    "kitchen",
+    "office",
+    "bathroom",
+    "outdoor"
+  ],
+  "furniture_categories": [
+    "seating",
+    "tables",
+    "storage",
+    "beds",
+    "lighting",
+    "decor"
+  ],
+  "lease_durations": [
+    {
+      "months": 1,
+      "discount": 0
+    },
+    {
+      "months": 3,
+      "discount": 0.05
+    },
+    {
+      "months": 6,
+      "discount": 0.10
+    },
+    {
+      "months": 12,
+      "discount": 0.15
+    }
+  ],
+  "ml_models": {
+    "recommender": {
+      "path": "models/recommender.h5",
+      "type": "neural_network"
+    },
+    "style_classifier": {
+      "path": "models/style_classifier.h5",
+      "type": "cnn"
+    }
+  }
+}
