@@ -4,6 +4,9 @@ from flask_cors import CORS
 from config import Config
 from app.models import db
 from app.routes import api, _update_recommender
+from app.monitoring import monitoring
+from logging_config import setup_logging
+from middleware import setup_middleware
 
 
 def create_app(config_class=Config):
@@ -11,12 +14,20 @@ def create_app(config_class=Config):
     app = Flask(__name__, static_folder='static')
     app.config.from_object(config_class)
     
+    # Setup logging
+    setup_logging(app)
+    app.logger.info('Starting AI Building Materials Leasing Platform')
+    
+    # Setup middleware
+    setup_middleware(app)
+    
     # Initialize extensions
     db.init_app(app)
     CORS(app)
     
     # Register blueprints
     app.register_blueprint(api, url_prefix='/api')
+    app.register_blueprint(monitoring, url_prefix='/api')
     
     # Route for serving the web interface
     @app.route('/')
@@ -25,9 +36,14 @@ def create_app(config_class=Config):
     
     # Create database tables and initialize data
     with app.app_context():
-        db.create_all()
-        _initialize_sample_data()
-        _update_recommender()
+        try:
+            db.create_all()
+            _initialize_sample_data()
+            _update_recommender()
+            app.logger.info('Application initialized successfully')
+        except Exception as e:
+            app.logger.error(f'Failed to initialize application: {str(e)}')
+            raise
     
     return app
 
@@ -213,6 +229,6 @@ if __name__ == '__main__':
     print("\nWeb Interface: http://localhost:5000")
     print("=" * 60)
     
-    # Use debug mode from environment variable, default to False for production
+    # Use debug mode from environme in nt variable, default to False for production
     debug_mode = os.environ.get('FLASK_DEBUG', 'False').lower() in ('true', '1', 't')
     app.run(debug=debug_mode, host='0.0.0.0', port=5000)
